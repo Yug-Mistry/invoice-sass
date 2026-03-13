@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained()->cascadeOnDelete();
-            $table->string('resource');
-            $table->enum('action', ['create', 'read', 'update', 'delete']);
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
-
-            $table->index(['group_id', 'resource']);
         });
     }
 
